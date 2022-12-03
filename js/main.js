@@ -3,6 +3,7 @@ new Vue({
   data: {
     newTask: "",
     priority: "1",
+    orderBy: "recent",
     tasks: [
       {
         id: 1,
@@ -15,6 +16,14 @@ new Vue({
         priority: 5,
       },
     ],
+  },
+  computed: {
+    orderedTasks() {
+      let tasksCopy = [...this.tasks];
+      return this.orderBy === "recent"
+        ? tasksCopy.reverse()
+        : tasksCopy.sort((a, b) => a.priority - b.priority).reverse();
+    },
   },
   methods: {
     addTask: function (event) {
@@ -30,7 +39,7 @@ new Vue({
       this.priority = "1";
     },
     deleteTask: function (id) {
-      let taskToDeleteIndex = this.tasks.findIndex((task) => (task.id = id));
+      let taskToDeleteIndex = this.tasks.findIndex((task) => task.id === id);
       this.tasks.splice(taskToDeleteIndex, 1);
     },
   },

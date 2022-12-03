@@ -26,10 +26,16 @@
             v-model="priority"
             value="1"
           />
+          <label for="task-priority">Order by:</label>
+          <select id="task-priority" v-model="orderBy">
+            <option value="recent" selected>Recently added</option>
+            <option value="priority">Priority</option>
+          </select>
+
           <button type="submit">Add</button>
         </form>
         <ul>
-          <li v-for="task in tasks">
+          <li v-for="task in orderedTasks">
             {{task.label}} | priority: {{task.priority}}
             <button @click="deleteTask(task.id)">delete</button>
           </li>

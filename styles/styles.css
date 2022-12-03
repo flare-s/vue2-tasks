@@ -1,0 +1,94 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: slategray;
+}
+
+header {
+  padding: 10px 0;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+main {
+  padding: 10px 0;
+}
+
+.container {
+  width: 100%;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+}
+
+input,
+select {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid rgb(29, 49, 183);
+}
+
+form > * + * {
+  margin-top: 10px;
+}
+
+form button {
+  background-color: rgb(29, 183, 65);
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+}
+
+ul {
+  list-style: none;
+  margin-top: 25px;
+}
+
+li {
+  padding: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+li button {
+  padding: 5px;
+  border-radius: 5px;
+  background-color: rgb(189, 30, 30);
+  color: white;
+  border: none;
+}
+
+.task__label {
+  margin-right: auto;
+}
+
+.task__priority {
+  padding: 5px;
+  border-radius: 5px;
+}
+.task__priority__urgent {
+  background-color: rgb(230, 111, 20);
+}
+.task__priority__important {
+  background-color: rgb(217, 207, 20);
+}
+.task__priority__regular {
+  background-color: rgb(30, 228, 106);
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}

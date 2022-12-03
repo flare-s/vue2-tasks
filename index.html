@@ -9,43 +9,58 @@
   </head>
   <body>
     <div id="app">
-      <header><h1>Tasks List</h1></header>
+      <header>
+        <div class="container">
+          <h1>Tasks List</h1>
+        </div>
+      </header>
       <main>
-        <form @submit="addTask($event)">
-          <input
-            aria-label="Enter task name"
-            placeholder="Task name"
-            v-model="newTask"
-          />
-          <label for="task-priority">Task priority</label>
-          <input
-            type="number"
-            id="task-priority"
-            min="1"
-            max="10"
-            v-model="priority"
-            value="1"
-          />
-          <label for="task-priority">Order by:</label>
-          <select id="task-priority" v-model="orderBy">
-            <option value="recent" selected>Recently added</option>
-            <option value="priority">Priority</option>
-          </select>
-          <label for="task-priority-filter">Show:</label>
-          <select id="task-priority" v-model="filterByPriority">
-            <option value="all" selected>all</option>
-            <option value="7">Priority under 7</option>
-            <option value="4">Priority under 4</option>
-          </select>
+        <div class="container">
+          <form @submit="addTask($event)">
+            <input
+              aria-label="Enter task name"
+              placeholder="Task name"
+              v-model="newTask"
+              required
+            />
+            <label for="task-priority">Task priority</label>
+            <input
+              type="number"
+              id="task-priority"
+              min="1"
+              max="10"
+              v-model="priority"
+              value="1"
+            />
+            <label for="task-priority">Order by:</label>
+            <select id="task-priority" v-model="orderBy">
+              <option value="recent" selected>Recently added</option>
+              <option value="priority">Priority</option>
+            </select>
+            <label for="task-priority-filter">Show:</label>
+            <select id="task-priority" v-model="filterByPriority">
+              <option value="all" selected>all</option>
+              <option value="7">Priority under 7</option>
+              <option value="4">Priority under 4</option>
+            </select>
 
-          <button type="submit">Add</button>
-        </form>
-        <ul>
-          <li v-for="task in orderedTasks">
-            {{task.label}} | priority: {{task.priority}}
-            <button @click="deleteTask(task.id)">delete</button>
-          </li>
-        </ul>
+            <button type="submit">Add</button>
+          </form>
+          <ul v-if="orderedTasks.length > 0">
+            <li v-for="task in orderedTasks">
+              <span class="task__label">{{task.label}}</span>
+              <span
+                class="task__priority"
+                :class="{task__priority__urgent: task.priority < 4 , task__priority__important: task.priority < 7 && task.priority > 3,  task__priority__regular: (task.priority <= 10 && task.priority > 6)}"
+                >priority: {{task.priority}}</span
+              >
+              <button @click="deleteTask(task.id)">Delete</button>
+            </li>
+          </ul>
+          <p v-if="orderedTasks.length === 0">
+            There's no current tasks available.
+          </p>
+        </div>
       </main>
     </div>
     <script src="https://unpkg.com/vue@2"></script>

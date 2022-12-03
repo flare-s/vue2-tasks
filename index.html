@@ -8,19 +8,23 @@
     <title>Vue Tasks List</title>
   </head>
   <body>
-    <header><h1>Task List</h1></header>
-    <main>
-      <form>
-        <input aria-label="Enter task name" placeholder="Task name" />
-        <label for="task-priority">Task priority</label>
-        <input type="number" id="task-priority" min="1" max="10" value="1" />
-        <button type="submit">Add</button>
-      </form>
-      <ul>
-        <li>Go for a run</li>
-        <li>Get groceries</li>
-      </ul>
-    </main>
+    <div id="app">
+      <header><h1>Task List</h1></header>
+      <main>
+        <form>
+          <input aria-label="Enter task name" placeholder="Task name" />
+          <label for="task-priority">Task priority</label>
+          <input type="number" id="task-priority" min="1" max="10" value="1" />
+          <button type="submit">Add</button>
+        </form>
+        <ul>
+          <li v-for="task in tasks">
+            {{task.label}} | priority: {{task.priority}}
+          </li>
+        </ul>
+      </main>
+    </div>
+    <script src="https://unpkg.com/vue@2"></script>
     <script src="./js/main.js"></script>
   </body>
 </html>

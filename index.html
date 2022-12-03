@@ -9,7 +9,7 @@
   </head>
   <body>
     <div id="app">
-      <header><h1>Task List</h1></header>
+      <header><h1>Tasks List</h1></header>
       <main>
         <form @submit="addTask($event)">
           <input
@@ -30,6 +30,12 @@
           <select id="task-priority" v-model="orderBy">
             <option value="recent" selected>Recently added</option>
             <option value="priority">Priority</option>
+          </select>
+          <label for="task-priority-filter">Show:</label>
+          <select id="task-priority" v-model="filterByPriority">
+            <option value="all" selected>all</option>
+            <option value="7">Priority under 7</option>
+            <option value="4">Priority under 4</option>
           </select>
 
           <button type="submit">Add</button>

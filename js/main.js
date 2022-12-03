@@ -4,6 +4,7 @@ new Vue({
     newTask: "",
     priority: "1",
     orderBy: "recent",
+    filterByPriority: "all",
     tasks: [
       {
         id: 1,
@@ -20,9 +21,14 @@ new Vue({
   computed: {
     orderedTasks() {
       let tasksCopy = [...this.tasks];
+      if (this.filterByPriority !== "all") {
+        tasksCopy = tasksCopy.filter(
+          (task) => task.priority < this.filterByPriority
+        );
+      }
       return this.orderBy === "recent"
         ? tasksCopy.reverse()
-        : tasksCopy.sort((a, b) => a.priority - b.priority).reverse();
+        : tasksCopy.sort((a, b) => a.priority - b.priority);
     },
   },
   methods: {

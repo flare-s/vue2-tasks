@@ -31,6 +31,7 @@
         <ul>
           <li v-for="task in tasks">
             {{task.label}} | priority: {{task.priority}}
+            <button @click="deleteTask(task.id)">delete</button>
           </li>
         </ul>
       </main>

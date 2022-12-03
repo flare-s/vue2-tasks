@@ -11,10 +11,21 @@
     <div id="app">
       <header><h1>Task List</h1></header>
       <main>
-        <form>
-          <input aria-label="Enter task name" placeholder="Task name" />
+        <form @submit="addTask($event)">
+          <input
+            aria-label="Enter task name"
+            placeholder="Task name"
+            v-model="newTask"
+          />
           <label for="task-priority">Task priority</label>
-          <input type="number" id="task-priority" min="1" max="10" value="1" />
+          <input
+            type="number"
+            id="task-priority"
+            min="1"
+            max="10"
+            v-model="priority"
+            value="1"
+          />
           <button type="submit">Add</button>
         </form>
         <ul>
